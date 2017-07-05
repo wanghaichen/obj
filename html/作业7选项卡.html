@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>无标题文档</title>
+<style>
+body,ul,li{margin:0; padding:0; font:12px/1.5 arial;}
+ul,li{list-style:none;}
+.wrap{width:500px; margin:20px auto;}
+.hide{display:none;}
+#tab_t{height:25px;border-bottom:1px solid #ccc;}
+#tab_t li{float:left; width:80px; height:24px; line-height:24px; margin:0 4px; text-align:center; border:1px solid #ccc; border-bottom:none; background:#f5f5f5; cursor:pointer}
+#tab_t .act{ position:relative; height:25px; margin-bottom:-1px; background:#fff;}
+#tab_c{border:1px solid #ccc; border-top:none; padding:20px;}
+</style>
+<script>
+	//根据序号切换选项卡，序号会传给data参数
+	function xuanze(data){
+		var liaar=document.getElementsByTagName("li");//取得所有li元素，也就是取得所有选项卡
+		for(var i=0;i<liaar.length;i++){//遍历所有li元素
+			liaar[i].className="";//把所有选项卡样式清除
+		}
+		liaar[data-1].className="act";//设置序号对应的选项卡样式为act样式
+		var tab_c=document.getElementById("tab_c");//取得包含所有内容层的DIV
+		var arrdiv=[];
+		for(var i in tab_c.childNodes){//循环tab_c的所有子元素
+			if(tab_c.childNodes[i].nodeType==1){//判断子元素是否是元素节点，判断是否是内容层
+				tab_c.childNodes[i].className="hide";//设置所有子元素节点样式为隐藏
+				arrdiv.push(tab_c.childNodes[i]);//将所有元素节点放置到一个数组中
+			}
+		}
+		arrdiv[data-1].className="";//设置对应的内容层样式为空，实现对应层显示效果
+	}
+</script>
+</head>
+
+<body>
+
+<div class="wrap">
+  <ul id="tab_t">
+    <li class="act" onclick="xuanze(1)">选择1</li>
+    <li onclick="xuanze(2)">选择2</li>
+    <li onclick="xuanze(3)">选择3</li>
+    <li onclick="xuanze(4)">选择4</li>
+  </ul>
+  <div id="tab_c">
+    <div>内容1<br/>
+		<img src="../images/a2.png"/>
+	</div>
+    <div class="hide">内容2<br/>
+		<img src="../images/a3.png"/>
+	</div>
+    <div class="hide">内容3<br/>
+		<img src="../images/a4.png"/>
+	</div>
+    <div class="hide">内容4<br/>
+		<img src="../images/a1.jpg"/>
+	</div>
+  </div>
+</div>  
+  
+</body>
+</html>

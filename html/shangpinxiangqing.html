@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>商品详情</title>
+<style>
+*{padding: 0;margin: 0;}
+li{list-style-type: none;}
+.zoom{margin: 50px;position: relative;}
+.zoom .left{float:left;margin-left:84px;}
+.zoomMiddle{border: 1px solid #ccc;width:400px;height:400px;margin-bottom: 3px;position: relative;margin-left:1px;} 
+.zoomMiddle img{width:400px;height:400px;}
+.mask{width: 100px;height: 100px;background: #abcdef;opacity:0.4;position: absolute;left: 0;top: 0;display: none;}
+.zoomSmall{-overflow: hidden;width: 568px;height: 54px;margin-left:1px;}
+.zoomSmall span{float: left;height: 52px;line-height: 52px;width: 10px;text-align: center;border: 1px solid #ccc;cursor: pointer;}
+.zoomSmall span.disable{cursor: default;background: #ccc;}
+.wrapSmallImg{float: left;height: 54px;width: 232px;position: relative;overflow: hidden;}
+.wrapSmallImg ul{width: 348px;position: absolute;left: 0;top: 0;}
+.wrapSmallImg ul li{float: left;width: 50px;height: 50px;border: 2px solid #ccc;margin: 0 2px;_display: inline;cursor: pointer;}
+.wrapSmallImg ul li.current{border: 2px solid orange;}
+.wrapSmallImg ul li img{width: 50px;height: 50px;}
+.zoomLarge{width: 350px;height: 350px;border: 1px solid #ccc;position: absolute;top: 0;left:510px;overflow: hidden;display:none;background:#fff;}
+.zoomLarge img{width: 600px;height:600px;position: absolute;left: 0;top: 0;}
+
+.zoom .right{float:left;}
+.zoom .right p{font:20px/32px "";}
+.zoom .right p{font:14px/20px "";color:#ccc;margin-top:20px;}
+.zoom .right b{display:block;font:26px/28px "";color:#f30;margin-top:20px;}
+</style>
+<link href="../css/shangpinxiangqing.css" rel="stylesheet" tyspane="text/css">
+<link href="../css/public.css" rel="stylesheet" tyspane="text/css">
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js" ></script>
+<script>
+$(function(){
+  var smallImgLi = $('.wrapSmallImg ul li');
+  var smallImgLiLength = smallImgLi.size();
+  var smallImgLiWidth = smallImgLi.outerWidth(true);
+  var smallImgUl = $('.wrapSmallImg ul');
+  var leftBtn = $('span.left');
+  var rightBtn = $('span.right');
+  var now = 0;
+  var zoomMiddleDiv = $('.zoomMiddle');
+  smallImgLi.mouseover(function(){
+    $(this).addClass('current').siblings().removeClass('current');
+    var thisSrc = $(this).children('img').attr('src');
+    $('.zoomMiddle img').attr('src',thisSrc);
+    $('.zoomLarge img').attr('src',thisSrc);
+  });
+  rightBtn.click(function(){
+    //��now=2��ʱ�����ǲ�ϣ��������������
+    leftBtn.removeClass('disable');
+    if(now>=smallImgLiLength-4){
+      $(this).addClass('disable');
+      now = smallImgLiLength-4;
+    }else{
+      now++;
+      smallImgUl.animate({'left':-now*smallImgLiWidth},300);
+    }
+  });
+  leftBtn.click(function(){
+    if(now==0){
+      now=0;
+    }else{
+      now--;
+      smallImgUl.animate({'left':'+='+smallImgLiWidth},300);
+    }
+  });
+  zoomMiddleDiv.mousemove(function(e){
+    $('.mask').show();
+    $('.zoomLarge').show();
+    zoomMiddleDivOffset = zoomMiddleDiv.offset();
+    var x = e.pageX - zoomMiddleDivOffset.left - $('.mask').width()/2;
+    var y = e.pageY - zoomMiddleDivOffset.top - $('.mask').height()/2;
+    if(x<=0){
+      x=0;
+    }else if(x>=zoomMiddleDiv.width()-$('.mask').width()){
+      x = zoomMiddleDiv.width()-$('.mask').width();
+    }
+    if(y<=0){
+      y=0;
+    }else if(y>=zoomMiddleDiv.height()-$('.mask').height()){
+      y = zoomMiddleDiv.height()-$('.mask').height();
+    }
+    var percentageX = x/(zoomMiddleDiv.width()-$('.mask').width());
+    var percentageY = y/(zoomMiddleDiv.height()-$('.mask').height());
+    $('.zoomLarge img').css({
+      left:-percentageX*(600-$('.zoomLarge').width()),
+      top:-percentageY*(600-$('.zoomLarge').height())
+    });
+    $('.mask').css({
+      'left':x+'px',
+      'top':y+'px'
+    });
+  });
+  zoomMiddleDiv.mouseout(function(){
+    $('.mask').hide();
+    $('.zoomLarge').hide();
+  });
+});
+</script>
+</head>			
+<body>
+<header>
+	<div class="margin">
+		<div id="tou1">
+			<a href="#"><span id="y1"></span></a>
+			<a href="denglu.html"><span>登录</span></a>
+			<a href="zhuce.html"><span>注册</span></a>
+			<a href="#"  >
+				<span class="ding">Global</span>
+			</a>    
+		</div>               
+	</div>
+</header>
+
+<div id="xia1">
+	<h3>Select your country or region</h3>
+	<ul>
+        <li><a href="#">Algerie</a>     </li>
+        <li><a href="#">Australia</a>   </li>
+        <li><a href="#">Bangladesh</a>  </li>
+        <li><a href="#">Egypt</a>       </li>
+        <li><a href="#">Gloal</a>       </li>
+        <li><a href="#">India</a>       </li>
+        <li><a href="#">Indonesia</a>   </li>
+        <li><a href="#">Kenya</a>       </li>
+        <li><a href="#">Malaysia</a>    </li>
+        <li><a href="#">Maroc</a>       </li>
+        <li><a href="#">Pakistan</a>    </li>
+        <li><a href="#">Philippines</a> </li>
+        <li><a href="#">Singapore</a>   </li>
+        <li><a href="#">Sri Lanka</a>   </li>
+        <li><a href="#">台湾</a>        </li>
+        <li><a href="#">UAE</a>         </li>
+        <li><a href="#">Viet Nam</a>    </li>
+        <li><a href="#">%^%$^$%</a>     </li>
+        <li><a href="#">Myanmar</a>     </li>
+        <li><a href="#">中国</a>        </li>
+    </ul>
+</div>
+<nav class="clear">
+	<div class="margin">
+		<div id="n">
+			<div id="n1">
+				<img src="../images/1.gif"/>
+			</div>
+			<ul>
+				<li><a href="">首页</a></li>
+				<li><a href="chanpin.html">产品</a></li>
+				<li><a href="shangcheng.html">商城</a></li>
+				<li><a href="">体验店</a></li>
+				<li><a href="fuwu.html">服务</a></li>
+				<li><a href="">ColorOS</a></li>
+				<li><a href="">社区</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+
+
+
+
+
+
+<div class="zoom clear">
+	<div class="left">
+      <div class="zoomMiddle">
+        <img src="../images/a1.png" alt="">
+        <div class="mask"></div>
+      </div>
+      <div class="zoomSmall">
+        <span class="left disable"><</span>
+        <div class="wrapSmallImg">
+          <ul>
+            <li class="current"><img src="../images/a1.png" alt=""></li>
+            <li><img src="../images/a2.png" alt=""></li>
+            <li><img src="../images/a3.png" alt=""></li>
+            <li><img src="../images/a4.png" alt=""></li>
+            <li><img src="../images/a5.png" alt=""></li>
+            <li><img src="../images/a6.png" alt=""></li>
+          </ul>
+        </div>
+        <span class="right">></span>
+      </div>
+      <div class="zoomLarge"><img src="../images/a1.png" alt=""></div>
+    </div>
+    <div class="right">
+    	<h1>R11 热力红 新品上市</h1>
+        <p>明星旗舰产品，前后2000W，拍照更清晰</p>
+        <b>￥3199.00</b>
+		<div></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<footer>
+	<div class="margin">
+		<div id="margin-1">
+			<dl>
+				<dt>推荐机型</dt>
+				<dd><a href="#">R9s</a></dd>
+				<dd><a href="#">R9s plus</a></dd>
+				<dd><a href="#">A57</a></dd>
+				<dd><a href="#">A59s</a></dd>
+			</dl>
+			<dl>
+				<dt>服务</dt>
+				<dd><a href="#">服务网点查询</a></dd>
+				<dd><a href="#">零配件价格查询</a></dd>
+				<dd><a href="#">官方授权网店</a></dd>
+			</dl>	
+			<dl>
+				<dt>关于我们</dt>
+				<dd><a href="#">关于OPPO</a></dd>
+				<dd><a href="#">加入我们</a></dd>
+				<dd><a href="#">发布会回顾</a></dd>
+			</dl>
+			<dl>
+				<dt>商务合作</dt>
+				<dd><a href="#">开放平台</a></dd>
+				<dd><a href="#">采购相关</a></dd>
+			</dl>
+			<div class="margin-2">
+				<img src="../images/5.png"/>
+				<h3>4001-666-888</h3>
+				<p>(24小时全国服务热线)</p>
+			</div>
+		</div>
+		<div id="margin-3">
+			<p>&copy;2005 - 2017 OPPO 版权所有 粤ICP备08130115号-1 联系方式：4001-666-888
+			</p>
+			<div id="m1" >
+				<p>关注我们：</p>
+				<ul>
+					<li><a href="#"><img src="../images/8.gif"/></a></li>
+					<li id="l1">
+						<div id="p1"></div>
+						<a href="#"><img src="../images/9.gif" id="img02"/></a>
+					</li>
+					<li>
+						<div id="p2"></div>
+						<a href="#"><img src="../images/10.gif" id="img03"/></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+</footer>
+</body>
+<script type="text/javascript" src="../js/caidan.js"></script>
+</html>
