@@ -1,0 +1,42 @@
+*{margin: 0 auto;}
+.margin {width: 1180px;}
+
+header {background:#009b72;height: 30px;position:relative;}
+header #tou1{float:right;}
+header #tou1 a{font:14px/30px "";color: #fff;margin:auto 20px;float: left;}
+
+
+#xia1{width:1383px;height:140px;position:absolute;left:0;top:25px;display:none;
+z-index:100;background:#fff;}
+#xia1 h3{padding:2px 0 0 20px;}
+#xia1 li{font:700 16px/70px "";float:left;padding:0 0 0 20px;}
+#xia1 li:hover a{color:#0F3;}
+
+nav #n {height: 80px;}
+nav #n #n1{float: left; }
+nav #n ul{float: right;}
+nav #n ul li {float: left;width: 72px;text-align:center;list-style:none;}
+nav #n ul li a{font: 14px/80px "";color: #7b7b7b;padding-bottom: 6px;}
+nav #n ul li a:hover{border-bottom: 2px solid #009b72;font:800 18px/80px "";color: #009b72;}
+
+
+footer{height: 380px;background: #f6f6f6;}
+footer #margin-1 {height: 254px;border-bottom: 1px solid #cfcfcf;}
+footer #margin-1 dl{float: left;width: 220px;padding-top: 64px;}
+footer #margin-1 dl dt{font: 700 14px/34px "";color: #363636;}
+footer #margin-1 dl dd{font: 12px/30px "";color: #363636;}
+footer #margin-1 dl dd a:hover{font: 700 16px/30px "";color: #009b72;}
+footer .margin-2{float: right;padding-top: 64px;}
+footer .margin-2 img{margin: 6px 0 16px 30px;}
+footer .margin-2 h3{font: 900 24px/34px "";color: #393939;padding-left: 40px;}
+footer .margin-2 p{font: 14px/26px "";color: #393939;padding-left: 45px;}
+footer #margin-3{display: flex;}
+footer #margin-3 p{font: 10px/74px "";color: #7b7b7b;float: left;}
+footer #margin-3 #m1{font: 10px/74px "";color: #7b7b7b;text-align: right;}
+footer #margin-3 #m1 ul{float: left;height: 116px;margin-top: 22px;}
+footer #margin-3 #m1 ul li{float: left;width: 32px;height: 32px;position: relative;}
+footer #margin-3 #m1 ul li {margin:-20px 10px 45px;}
+footer #margin-3 #m1 ul #p1{background: url(../images/wx.jpg);width: 146px;height: 200px;position: absolute;left: -55px;top: -210px;display: none;}
+footer #margin-3 #m1 ul li:hover #p1{display: block;}
+footer #margin-3 #m1 ul #p2{background: url(../images/zfb.jpg);width: 146px;height: 200px;position: absolute;left: -55px;top: -210px;display: none;}
+footer #margin-3 #m1 ul li:hover #p2{display: block;}
